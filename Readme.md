@@ -10,23 +10,43 @@ Install it writing in terminal:
 Example:
 
   ```go
-    // supose that this is your struct
-    type MyDataType struct{
-      ID int
-      name string
-    }
+    import(
+      "fmt"
+      "github.com/jenazads/gonv"
+    )
 
-    // your comparator, you cna use this function as TypeComparator type function
-    func MyComparator(a, b interface{}) int {
-      AaAsserted := a.(MyDataType)
-      bAsserted := b.(MyDataType)
-      switch {
-        case aAsserted.ID > bAsserted.ID:
-          return 1
-        case aAsserted.ID < bAsserted.ID:
-          return -1
-        default:
-          return 0
-      }
+    func main(){
+      // using system environmental variables
+      gonv.SetEnv("BOOL", true)
+      isBool, _ := gonv.GetBoolEnv("BOOL")
+      username, _:= gonv.GetEnv("USER") // return $USER system variable
+
+      fmt.Println(username, ", ", isBool)
+      
+      gonv.SetEnv("NAME", "Jenazads")
+      nameSystem ,_ := gonv.GetEnv("NAME")
+      fmt.Println("name:", nameSystem)
+      gonv.UpdateEnv("NAME", 4)
+      nameUpdatedsystem, _ := gonv.GetIntEnv("NAME")
+      fmt.Println("name updated:", nameUpdatedsystem)
+      
+      // using object environmental variables
+      gonvObject := gonv.NewGonv()
+      gonvObject.SetEnv("BOOL", true)
+      isBool, _ = gonvObject.GetBoolEnv("BOOL")
+      usernameObj,_ := gonvObject.GetEnv("USER") // return nil
+      
+      fmt.Println(usernameObj, ", ", isBool)
+      
+      gonvObject.SetEnv("NAME", "Jenazads")
+      nameLocal, _ := gonvObject.GetEnv("NAME")
+      fmt.Println("name:", nameLocal)
+      fmt.Println(gonvObject)
+
+      gonvObject.UpdateEnv("NAME", 4)
+      nameLocal, _ = gonv.GetIntEnv("NAME") // we can set another type because is interface type !
+      fmt.Println("name updated:", nameLocal)
+      
+      fmt.Println(gonvObject)
     }
   ```
