@@ -5,7 +5,7 @@ import(
   "github.com/jenazads/gonv"
 )
 
-func main(){
+func Example_manageEnvironmentalVariables()(){
   // using system environmental variables
   gonv.SetEnv("BOOL", true)
   isBool, _ := gonv.GetBoolEnv("BOOL")
