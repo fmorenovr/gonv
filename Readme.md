@@ -1,6 +1,6 @@
 # Golang + Environment = gonv
 
-gonv (Golang eNVironment) is a Golang implementation to manage environment variables in system.  
+gonv (Golang eNVironment) is a Golang implementation to manage environment variables in operating system.  
 You can see an extended doc in [godocs](https://godoc.org/github.com/Jenazads/gonv).
 
 Install it writing in terminal:
